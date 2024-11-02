@@ -1,14 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { columns, EmployeeButtons } from '../../utils/EmployeeHelper'
-import DataTable from 'react-data-table-component'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { columns, EmployeeButtons } from '../../utils/EmployeeHelper';
+import DataTable from 'react-data-table-component';
+import axios from 'axios';
+import styled, { StyleSheetManager } from 'styled-components'; // Importing styled-components
 
+// Styled components
+const StyledContainer = styled.div`
+    padding: 1.5rem; // equivalent to 'p-6'
+`;
+
+const Title = styled.h3`
+    text-align: center;
+    font-size: 1.5rem; // equivalent to 'text-2xl'
+    font-weight: bold;
+`;
+
+const SearchInput = styled.input`
+    padding: 0.5rem 1rem; // equivalent to 'px-4 py-0.5'
+`;
+
+const AddButton = styled(Link)`
+    padding: 0.5rem 1rem; // equivalent to 'px-4 py-1'
+    background-color: #38b2ac; // equivalent to 'bg-teal-600'
+    border-radius: 0.375rem; // equivalent to 'rounded'
+    color: white;
+    text-decoration: none; // Remove underline
+`;
+
+const shouldForwardProp = (prop) => {
+    return prop !== 'center'; // Filter out the 'center' prop
+};
 
 const List = () => {
-
-    const [employees, setEmployees] = useState([])
-    const [empLoading, setEmpLoading] = useState(false)
+    const [employees, setEmployees] = useState([]);
+    const [empLoading, setEmpLoading] = useState(false);
+    const [filteredEmployee, setFilteredEmployee] = useState([])
 
     useEffect(() => {
         const fetchEmployees = async () => {
@@ -19,7 +46,7 @@ const List = () => {
                         "Authorization": `Bearer ${localStorage.getItem('token')}`
                     }
                 });
-                console.log(response.data);
+
 
                 if (response.data.success) {
                     let sno = 1;
@@ -29,11 +56,11 @@ const List = () => {
                         dept_name: emp.department.dept_name,
                         name: emp.userId.name,
                         dob: new Date(emp.dob).toLocaleDateString(),
-                        profileImage: <img className='rounded-full p-2' src={`http://localhost:5000/uploads/${emp.userId.profileImage}`} style={{ width: '100px', height: '100px', objectFit: 'cover' }} alt="Profile" />,
-                        action: (<EmployeeButtons Id={emp._id} />),
+                        profileImage: <img className='rounded-full p-2' src={`http://localhost:5000/${emp.userId.profileImage}`} style={{ width: '100px', height: '100px', objectFit: 'cover' }} alt="Profile" />,
+                        action: (<EmployeeButtons _id={emp._id} />),
                     }));
                     setEmployees(data);
-
+                    setFilteredEmployee(data)
                 }
             } catch (error) {
                 if (error.response && !error.response.data.success) {
@@ -44,22 +71,29 @@ const List = () => {
             }
         };
         fetchEmployees();
-    }, [])
+    }, []);
+
+    const handleFilter = (e) => {
+        const records = employees.filter((emp) => {
+            return emp.name.toLowerCase().includes(e.target.value.toLowerCase())
+        })
+        setFilteredEmployee(records)
+    }
 
     return (
-        <div className='p-6'>
-            <div className='text-center'>
-                <h3 className='text-2xl font-bold'>Manage Employees</h3>
-            </div>
-            <div className='flex justify-between items-center'>
-                <input type="text" placeholder='Search By Dept Name' className='px-4 py-0.5' />
-                <Link to='/admin-dashboard/add-employee' className='px-4 py-1 bg-teal-600 rounded text-white'>Add New Employee</Link>
-            </div>
-            <div>
-                <DataTable columns={columns} data={employees} />
-            </div>
-        </div>
-    )
-}
+        <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+            <StyledContainer>
+                <Title center={true}>Manage Employees</Title>
+                <div className='flex justify-between items-center'>
+                    <SearchInput type="text" onChange={handleFilter} placeholder='Search By Employee Name' />
+                    <AddButton to='/admin-dashboard/add-employee'>Add New Employee</AddButton>
+                </div>
+                <div>
+                    <DataTable columns={columns} data={filteredEmployee} pagination />
+                </div>
+            </StyledContainer>
+        </StyleSheetManager>
+    );
+};
 
-export default List
+export default List;
