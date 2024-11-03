@@ -57,6 +57,28 @@ export const fetchDepartments = async () => {
     return departments
 };
 
+//employees for salary form
+export const getEmployees = async (id) => {
+    let employees
+    try {
+        const response = await axios.get(`http://localhost:5000/api/employee/department/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        console.log(response);
+
+        if (response.data.success) {
+            employees = response.data.employees
+        }
+    } catch (error) {
+        if (error.response && !error.response.data.success) {
+            alert(error.response.data.error);
+        }
+    }
+    return employees
+};
+
 export const EmployeeButtons = ({ _id }) => {
     const navigate = useNavigate()
 
@@ -65,7 +87,7 @@ export const EmployeeButtons = ({ _id }) => {
         <div className="flex space-x-3">
             <button className="px-3 py-1 bg-teal-600 text-white" onClick={() => navigate(`/admin-dashboard/employees/${_id}`)}>View</button>
             <button className="px-3 py-1 bg-blue-600 text-white" onClick={() => navigate(`/admin-dashboard/employees/edit/${_id}`)}>Edit</button>
-            <button className="px-3 py-1 bg-yellow-600 text-white" >Salary</button>
+            <button className="px-3 py-1 bg-yellow-600 text-white" onClick={() => navigate(`/admin-dashboard/employees/salary/${_id}`)}>Salary</button>
             <button className="px-3 py-1 bg-red-600 text-white" >Leave</button>
         </div>
     )
