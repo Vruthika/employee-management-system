@@ -14,6 +14,7 @@ import View from './components/employee/View'
 import Edit from './components/employee/Edit'
 import AddSalary from './components/salary/Add'
 import ViewSalary from './components/salary/View'
+import Summary from './components/employeedashboard/Summary'
 
 
 
@@ -49,7 +50,18 @@ function App() {
           <Route path='/admin-dashboard/salary/add' element={<AddSalary />}></Route>
 
         </Route>
-        <Route path='/employee-dashboard' element={<EmpDashboard />}></Route>
+        <Route path='/employee-dashboard' element={
+          <PrivateRoutes>
+            <RoleBaseRoutes requiredRole={["admin", "employee"]}>
+              <EmpDashboard />
+            </RoleBaseRoutes>
+          </PrivateRoutes>
+        }>
+          <Route index element={<Summary />}></Route>
+          <Route path='/employee-dashboard/profile/:id' element={<View />}></Route>
+
+
+        </Route>
       </Routes>
     </BrowserRouter>
   )
