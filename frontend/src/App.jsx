@@ -15,6 +15,8 @@ import Edit from './components/employee/Edit'
 import AddSalary from './components/salary/Add'
 import ViewSalary from './components/salary/View'
 import Summary from './components/employeedashboard/Summary'
+import LeaveList from './components/leave/List'
+import AddLeave from './components/leave/Add'
 
 
 
@@ -24,8 +26,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Navigate to="/admin-dashboard" />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/' element={<Login />}></Route>
+        <Route path='/admin-dashboard' element={<Navigate to="/admin-dashboard" />}></Route>
+        {/* <Route path='/login' element={<Login />}></Route> */}
         <Route path='/admin-dashboard' element={
           <PrivateRoutes>
             <RoleBaseRoutes requiredRole={["admin"]}>
@@ -59,6 +63,8 @@ function App() {
         }>
           <Route index element={<Summary />}></Route>
           <Route path='/employee-dashboard/profile/:id' element={<View />}></Route>
+          <Route path='/employee-dashboard/leaves' element={<LeaveList />}></Route>
+          <Route path='/employee-dashboard/add-leave' element={<AddLeave />}></Route>
 
 
         </Route>
