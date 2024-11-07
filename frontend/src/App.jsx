@@ -18,6 +18,7 @@ import Summary from './components/employeedashboard/Summary'
 import LeaveList from './components/leave/List'
 import AddLeave from './components/leave/Add'
 import Setting from './components/EmployeeDashboard/Setting'
+import Table from './components/leave/Table'
 
 
 
@@ -53,6 +54,7 @@ function App() {
           <Route path='/admin-dashboard/employees/salary/:id' element={<ViewSalary />}></Route>
 
           <Route path='/admin-dashboard/salary/add' element={<AddSalary />}></Route>
+          <Route path='/admin-dashboard/leaves' element={<Table />}></Route>
 
         </Route>
         <Route path='/employee-dashboard' element={
