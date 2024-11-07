@@ -5,7 +5,7 @@ const leaveSchema = new Schema({
     employeeId: { type: Schema.Types.ObjectId, ref: "Employee", required: true },
     leaveType: {
         type: String,
-        enum: ["Sick Leave", "Casual Leave", "Annual Leave", "Medical Leave"],
+        enum: ["Sick Leave", "Casual Leave", "Annual Leave", "Medical Leave", "Maternity Leave"],
         required: true,
     },
     startDate: { type: Date, required: true },
