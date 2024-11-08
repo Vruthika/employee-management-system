@@ -3,40 +3,41 @@ import { useNavigate } from "react-router-dom";
 
 
 export const columns = [
+
     {
         name: "S No",
         selector: (row) => row.sno,
-        width: "70px",
+        width: "75px",
     },
     {
         name: "Emp ID",
         selector: (row) => row.employeeId,
-        width: "120px",
+        width: "150px",
     },
     {
         name: "Name",
         selector: (row) => row.name,
-        width: "120px",
+        width: "250px",
     },
     {
         name: "Leave Type",
         selector: (row) => row.leaveType,
-        width: "140px",
+        width: "200px",
     },
     {
         name: "Department",
         selector: (row) => row.department,
-        width: "170px",
+        width: "200px",
     },
     {
         name: "Days",
         selector: (row) => row.days,
-        width: "80px",
+        width: "125px",
     },
     {
         name: "Status",
         selector: (row) => row.status,
-        width: "120px",
+        width: "150px",
     },
     {
         name: "Action",
@@ -45,15 +46,16 @@ export const columns = [
     },
 ]
 
-export const LeaveButtons = ({ id }) => {
+export const LeaveButtons = ({ _id }) => {
     const navigate = useNavigate();
-    const handleView = (id) => {
-        navigate(`/admin-dashboard/leave/${id}`);
+    const handleView = (_id) => {
+
+        navigate(`/admin-dashboard/leaves/${_id}`);
     };
     return (
         <button
             className="px-4 py-1 bg-teal-500 rounded text-white hover:bg-teal-600"
-            onClick={() => handleView(id)}>
+            onClick={() => handleView(_id)}>
             View
         </button>
     )
