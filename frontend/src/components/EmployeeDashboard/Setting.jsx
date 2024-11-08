@@ -38,7 +38,12 @@ const Setting = () => {
                 );
                 if (response.data.success) {
                     alert("Password changed successfully!")
-                    navigate("/employee-dashboard")
+                    if (user.role === "employee") {
+                        navigate("/employee-dashboard")
+                    }
+                    else {
+                        navigate("/admin-dashboard")
+                    }
                     setError("")
                 }
             } catch (error) {
