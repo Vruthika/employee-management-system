@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const Table = () => {
     const [leaves, setLeaves] = useState([])
-    const [filteredleaves, setFilteredLeaves] = useState([])
+    const [filteredLeaves, setFilteredLeaves] = useState(null)
 
     const fetchLeaves = async () => {
         try {
@@ -57,7 +57,7 @@ const Table = () => {
     return (
         <>
             {
-                filteredleaves ? (
+                filteredLeaves ? (
                     <div className='p-6' >
                         <div className='text-center'>
                             <h3 className='text-2xl font-bold'>Manage Leaves</h3>
@@ -72,7 +72,7 @@ const Table = () => {
                             </div>
                         </div>
                         <div className='mt-3'>
-                            <DataTable columns={columns} data={filteredleaves} pagination />
+                            <DataTable columns={columns} data={filteredLeaves} pagination />
                         </div>
                     </div >
                 ) : (<div>Loading...</div>)}
