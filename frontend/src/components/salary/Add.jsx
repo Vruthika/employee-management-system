@@ -58,12 +58,12 @@ const Add = () => {
     return (
         <>{departments ? (
             <div className='max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md'>
-                <h2 className='text-2xl font-bold mb-6'>Add Salary</h2>
+                <h2 className='text-3xl text-center font-bold mb-6'>Add Salary</h2>
                 <form onSubmit={handleSubmit}>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         {/*Department */}
                         <div >
-                            <label className="block text-sm font-medium text-gray-700">Department</label>
+                            <label className="block text-l font-medium text-gray-700">Department</label>
                             <select name="department" onChange={handleDepartment} className='mt-1 p-2 block w-full border border-gray-300 rouded-md' required>
                                 <option value="">Select Department</option>
                                 {departments.map(dep => (
@@ -74,7 +74,7 @@ const Add = () => {
 
                         {/* Employee */}
                         <div >
-                            <label className="block text-sm font-medium text-gray-700">Employee</label>
+                            <label className="block text-l font-medium text-gray-700">Employee</label>
                             <select name="employeeId" onChange={handleChange} className='mt-1 p-2 block w-full border border-gray-300 rouded-md' required>
                                 <option value="">Select Employee</option>
                                 {employees.map((emp) => (
@@ -86,34 +86,34 @@ const Add = () => {
 
                         {/*Basic Salary*/}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">Basic Salary</label>
+                            <label className="block text-l font-medium text-gray-700">Basic Salary</label>
                             <input type="number" name="basicSalary" onChange={handleChange} placeholder='Basic Salary'
                                 className='mt-1 p-2 block w-full border border-gray-300 rounded-md' required />
                         </div>
 
                         {/*Allowances */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">Allowances</label>
+                            <label className="block text-l font-medium text-gray-700">Allowances</label>
                             <input type="number" name="allowances" onChange={handleChange} placeholder='Allowances'
                                 className='mt-1 p-2 block w-full border border-gray-300 rounded-md' required />
                         </div>
 
                         {/*Deductions */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">Deductions</label>
+                            <label className="block text-l font-medium text-gray-700">Deductions</label>
                             <input type="number" name="deductions" onChange={handleChange} placeholder='Deductions'
                                 className='mt-1 p-2 block w-full border border-gray-300 rounded-md' required />
                         </div>
 
                         {/*Pay Date */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">Pay Date</label>
+                            <label className="block text-l font-medium text-gray-700">Pay Date</label>
                             <input type="date" name="payDate" onChange={handleChange}
                                 className='mt-1 p-2 block w-full border border-gray-300 rounded-md' required />
                         </div>
                     </div>
 
-                    <button type='submit' className='w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md'>
+                    <button type='submit' className='w-full mt-6 text-xl bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md'>
                         Add Salary
                     </button>
                 </form>

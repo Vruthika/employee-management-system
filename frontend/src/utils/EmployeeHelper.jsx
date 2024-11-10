@@ -5,18 +5,20 @@ export const columns = [
     {
         name: "S. No",
         selector: (row) => row.sno,
-        width: "70px"
+        width: "90px",
+        center: "true"
     },
     {
         name: "Name",
         selector: (row) => row.name,
         sortable: true,
-        width: "150px"
+        width: "200px"
     },
     {
         name: "Image",
         selector: (row) => row.profileImage,
-        width: "150px"
+        width: "200px",
+        center: "true"
 
     },
     {
@@ -29,7 +31,8 @@ export const columns = [
         name: "DOB",
         selector: (row) => row.dob,
         sortable: true,
-        width: "150px"
+        width: "150px",
+        center: "true"
     },
     {
         name: "Action",

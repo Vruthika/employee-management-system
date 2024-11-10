@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from '../components/employeedashboard/Sidebar'
+import Sidebar from '../components/EmployeeDashboard/Sidebar'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/dashboard/Navbar'
 const EmpDashboard = () => {

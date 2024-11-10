@@ -3,6 +3,19 @@ import DataTable from 'react-data-table-component'
 import { columns, LeaveButtons } from '../../utils/LeaveHelper'
 import axios from 'axios'
 
+const customStyles = {
+    headCells: {
+        style: {
+            fontSize: '1.125rem',
+            fontWeight: 'bold',
+        },
+    },
+    cells: {
+        style: {
+            fontSize: '1rem',
+        },
+    },
+};
 
 const Table = () => {
     const [leaves, setLeaves] = useState([])
@@ -60,19 +73,19 @@ const Table = () => {
                 filteredLeaves ? (
                     <div className='p-6' >
                         <div className='text-center'>
-                            <h3 className='text-2xl font-bold'>Manage Leaves</h3>
+                            <h3 className='text-3xl font-bold'>Manage Leaves</h3>
                         </div>
                         <div className='flex justify-between items-center'>
                             <input type="text" className='px-4 py-0.5 border' placeholder='Search By Employee ID' onChange={filterByInput} />
 
                             <div className='space-x-3'>
-                                <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700' onClick={() => filterByButton("Pending")}>Pending</button>
-                                <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700' onClick={() => filterByButton("Approved")}>Approved</button>
-                                <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700' onClick={() => filterByButton("Rejected")}>Rejected</button>
+                                <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded-md' onClick={() => filterByButton("Pending")}>Pending</button>
+                                <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded-md' onClick={() => filterByButton("Approved")}>Approved</button>
+                                <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded-md' onClick={() => filterByButton("Rejected")}>Rejected</button>
                             </div>
                         </div>
                         <div className='mt-3'>
-                            <DataTable columns={columns} data={filteredLeaves} pagination />
+                            <DataTable columns={columns} data={filteredLeaves} customStyles={customStyles} pagination />
                         </div>
                     </div >
                 ) : (<div>Loading...</div>)}

@@ -36,11 +36,11 @@ const Add = () => {
     }
     return (
         <div className='max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md'>
-            <h2 className='text-2xl font-bold mb-6'>Request for Leave</h2>
+            <h2 className='text-3xl font-bold mb-6 text-center'>Request for Leave</h2>
             <form onSubmit={handleSubmit}>
                 <div className='flex flex-col space-y-4'>
                     <div>
-                        <label className='block text-sm font-medium text-gray-700'>Leave Type</label>
+                        <label className='block text-l font-medium text-gray-700'>Leave Type</label>
                         <select name="leaveType" onChange={handleChange} className='mt-1 p-2 block w-full border border-gray-300 rounded-md' required>
                             <option value="">Select Type</option>
                             <option value="Sick Leave">Sick Leave</option>
@@ -53,22 +53,22 @@ const Add = () => {
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         {/* from date */}
                         <div>
-                            <label className='block text-sm font-medium text-gray-700'>From Date</label>
+                            <label className='block text-l font-medium text-gray-700'>From Date</label>
                             <input type="date" name="startDate" onChange={handleChange} className='mt-1 p-2 block w-full border border-gray-300 rounded-md' required />
                         </div>
                         {/* to date */}
                         <div>
-                            <label className='block text-sm font-medium text-gray-700'>To Date</label>
+                            <label className='block text-l font-medium text-gray-700'>To Date</label>
                             <input type="date" name="endDate" onChange={handleChange} className='mt-1 p-2 block w-full border border-gray-300 rounded-md' required />
                         </div>
                     </div>
                     {/* description */}
                     <div>
-                        <label className='block text-ssm font-medium texxt-gray-700'>Description</label>
+                        <label className='block text-l font-medium text-gray-700'>Description</label>
                         <textarea name="reason" onChange={handleChange} className='w-full border border-gray-300'></textarea>
                     </div>
                 </div>
-                <button type='submit' className='w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md'>Request Leave</button>
+                <button type='submit' className='w-full mt-6 text-xl bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md'>Request Leave</button>
             </form>
 
         </div>

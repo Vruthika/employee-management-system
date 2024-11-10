@@ -55,18 +55,32 @@ const DepartmentList = () => {
 
     }
 
+    const customStyles = {
+        headCells: {
+            style: {
+                fontSize: '1.125rem', // 1.125rem = 18px (for header cells)
+                fontWeight: 'bold', // Make it bold
+            },
+        },
+        cells: {
+            style: {
+                fontSize: '1rem', // 1rem = 16px (for regular cells)
+            },
+        },
+    };
+
     return (
         <>{depLoading ? <div>Loading...</div> :
-            <div className='p-5'>
+            <div className='p-5 ml-40 mr-40'>
                 <div className='text-center'>
-                    <h3 className='text-2xl font-bold'>Manage Departments</h3>
+                    <h3 className='text-3xl font-bold'>Manage Departments</h3>
                 </div>
                 <div className='flex justify-between items-center'>
-                    <input type="text" placeholder='Search By Dept Name' className='px-4 py-0.5' onChange={filterDepartments} />
+                    <input type="text" placeholder='Search By Department Name' className='border px-3 rounded-md py-0.5 border-gray-300 w-[250px]' onChange={filterDepartments} />
                     <Link to='/admin-dashboard/add-department' className='px-4 py-1 bg-teal-600 rounded text-white'>Add New Department</Link>
                 </div>
                 <div className='mt-5'>
-                    <DataTable columns={columns} data={filteredDepts} pagination />
+                    <DataTable columns={columns} data={filteredDepts} pagination customStyles={customStyles} />
                 </div>
             </div>
         }</>

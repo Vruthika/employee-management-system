@@ -55,7 +55,7 @@ const View = () => {
 
                 {filteredSalaries.length > 0 ? (
                     <table className='w-full text-sm text-left text-gray-500'>
-                        <thead className='text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200'>
+                        <thead className='text-[1.125rem] text-gray-700 uppercase bg-gray-50 border border-gray-200'>
                             <tr>
                                 <th className='px-6 py-3'>S. No</th>
                                 <th className='px-6 py-3'>Emp ID</th>
@@ -66,7 +66,7 @@ const View = () => {
                                 <th className='px-6 py-3'>Pay Date</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='text-[1rem]'>
                             {filteredSalaries.map((salary) => (
                                 <tr key={salary._id} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
                                     <td className='px-6 py-3'>{sno++}</td>
@@ -75,8 +75,7 @@ const View = () => {
                                     <td className='px-6 py-3'>{salary.allowances}</td>
                                     <td className='px-6 py-3'>{salary.deductions}</td>
                                     <td className='px-6 py-3'>{salary.netSalary}</td>
-                                    <td className='px-6 py-3'>{new Date(salary.payDate).toLocaleDateString()}
-                                    </td>
+                                    <td className='px-6 py-3'>{new Date(salary.payDate).toLocaleDateString()}</td>
                                 </tr>
                             ))}
                         </tbody>

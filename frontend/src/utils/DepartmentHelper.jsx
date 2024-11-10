@@ -4,16 +4,19 @@ import { useNavigate } from "react-router-dom"
 export const columns = [
     {
         name: "S. No",
-        selector: (row) => row.sno
+        selector: (row) => row.sno,
+        width: "150px"
     },
     {
         name: "Department Name",
         selector: (row) => row.dept_name,
-        sortable: true
+        sortable: true,
+        width: "450px"
     },
     {
         name: "Action",
-        selector: (row) => row.action
+        selector: (row) => row.action,
+
     },
 ]
 
@@ -42,8 +45,8 @@ export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
 
     return (
         <div className="flex space-x-3">
-            <button className="px-3 py-1 bg-teal-600 text-white" onClick={() => navigate(`/admin-dashboard/department/${_id}`)}>Edit</button>
-            <button className="px-3 py-1 bg-red-600 text-white" onClick={() => handleDelete(_id)}>Delete</button>
+            <button className="px-3 py-1 bg-teal-600 text-white rounded-md" onClick={() => navigate(`/admin-dashboard/department/${_id}`)}>Edit</button>
+            <button className="px-3 py-1 bg-red-600 text-white rounded-md" onClick={() => handleDelete(_id)}>Delete</button>
         </div>
     )
 }
