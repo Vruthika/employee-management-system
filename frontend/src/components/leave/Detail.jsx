@@ -93,9 +93,9 @@ const Detail = () => {
                             <p className='text-xl font-bold'>{leave.status === "Pending" ? "Action" : "Status:"}</p>
                             {leave.status === "Pending" ? (
                                 <div className='flex space-x-2'>
-                                    <button className='px-2 py-0.5 bg-teal-300 hover:bg-teal-400'
+                                    <button className='px-2 py-0.5 bg-teal-300 hover:bg-teal-400 rounded-md'
                                         onClick={() => changeStatus(leave._id, "Approved")}>Approve</button>
-                                    <button className='px-2 py-0.5 bg-red-300 hover:bg-red-400' onClick={() => changeStatus(leave._id, "Rejected")}>Reject</button>
+                                    <button className='px-2 py-0.5 bg-red-300 hover:bg-red-400 rounded-md' onClick={() => changeStatus(leave._id, "Rejected")}>Reject</button>
                                 </div>
                             ) :
                                 <p className='text-lg font-medium'>{leave.status}</p>

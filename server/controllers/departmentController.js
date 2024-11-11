@@ -35,22 +35,12 @@ const getDepartment = async (req, res) => {
 }
 
 const updateDepartment = async (req, res) => {
-    const { id } = req.params;
-    const { dept_name, description } = req.body;
-
     try {
-        const department = await Department.findById(id);
-        if (!department) {
-            return res.status(404).json({ success: false, error: 'Department not found' });
-        }
-
-        department.dept_name = dept_name;
-        department.description = description;
-        await department.save();
-
-        res.json({ success: true, department });
+        const { id } = req.params;
+        const { dept_name, description } = req.body;
+        const updateDep = await Department.findByIdAndUpdate({ _id: id }, { dept_name, description });
+        res.status(200).json({ success: true, updateDep });
     } catch (error) {
-        console.error('Error updating department:', error);
         res.status(500).json({ success: false, error: 'Internal server error' });
     }
 }
@@ -58,7 +48,8 @@ const updateDepartment = async (req, res) => {
 const deleteDepartment = async (req, res) => {
     try {
         const { id } = req.params;
-        const deletedep = await Department.findByIdAndDelete({ _id: id })
+        const deletedep = await Department.findById({ _id: id })
+        await deletedep.deleteOne()
         return res.status(200).json({ success: true, deletedep })
     } catch (error) {
         return res.status(500).json({ success: false, error: "delete department server error" })

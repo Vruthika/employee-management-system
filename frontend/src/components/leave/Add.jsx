@@ -26,7 +26,7 @@ const Add = () => {
             console.log(response.data);
 
             if (response.data.success) {
-                navigate(`/employee-dashboard/leaves`)
+                navigate(`/employee-dashboard/leaves/${user._id}`)
             }
         } catch (error) {
             if (error.response && !error.response.data.success) {
