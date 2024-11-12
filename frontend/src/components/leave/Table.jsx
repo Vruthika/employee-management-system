@@ -39,7 +39,7 @@ const customStyles = {
 
 const Table = () => {
     const [leaves, setLeaves] = useState([]);
-    const [filteredLeaves, setFilteredLeaves] = useState(null);
+    const [filteredLeaves, setFilteredLeaves] = useState([]);
 
     const fetchLeaves = async () => {
         try {
@@ -52,12 +52,12 @@ const Table = () => {
             if (response.data.success) {
                 let sno = 1;
                 const data = response.data.leaves
-                    .filter(leave => leave.employeeId.department) // Exclude employees without a department
+                    .filter(leave => leave.employeeId && leave.employeeId.department) // Safely check if employeeId and department exist
                     .map((leave) => ({
                         _id: leave._id,
                         sno: sno++,
                         employeeId: leave.employeeId.employeeId,
-                        name: leave.employeeId.userId.name,
+                        name: leave.employeeId.userId?.name || 'No Name', // Handle missing name safely
                         leaveType: leave.leaveType,
                         department: leave.employeeId.department ? leave.employeeId.department.dept_name : 'No Department',
                         days: new Date(leave.endDate).getDate() - new Date(leave.startDate).getDate(),
@@ -66,6 +66,8 @@ const Table = () => {
                     }));
                 setLeaves(data);
                 setFilteredLeaves(data);
+            } else {
+                console.error("Failed to fetch leaves.");
             }
         } catch (error) {
             console.error(error);
@@ -81,7 +83,6 @@ const Table = () => {
 
     const handleDeleteDepartment = async (deptName) => {
         try {
-            // Deleting the department and associated data
             const response = await axios.delete(`http://localhost:5000/api/department/${deptName}`, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem('token')}`
@@ -89,7 +90,6 @@ const Table = () => {
             });
 
             if (response.data.success) {
-                // Filtering out deleted department employees from the state
                 const updatedLeaves = leaves.filter(leave => leave.department !== deptName);
                 setLeaves(updatedLeaves);
                 setFilteredLeaves(updatedLeaves);
@@ -142,14 +142,16 @@ const Table = () => {
             </div>
 
             <div className='mt-3'>
-                {filteredLeaves ? (
+                {leaves.length > 0 ? (
                     <DataTable
                         columns={columns}
                         data={filteredLeaves}
                         customStyles={customStyles}
                         pagination
                     />
-                ) : (<div>Loading...</div>)}
+                ) : (
+                    <div>Loading...</div>
+                )}
             </div>
         </StyledContainer>
     );
