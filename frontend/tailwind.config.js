@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        "pacific": ["Pacifico", 'sans-serif']
+        "pacific": ["Sour Gummy", 'sans-serif']
       }
     },
   },
