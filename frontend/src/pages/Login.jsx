@@ -42,7 +42,7 @@ const Login = () => {
         < div
             className='flex flex-col items-center h-screen justify-center
             bg-gradient-to-b from-teal-600 from-50% to-gray-100 to-50% space-y-6'>
-            <h2 className='font-pacific text-3xl text-white'>Employee Management System</h2>
+            <h2 className='font-pacific text-4xl font-bold text-white'>Employee Management System</h2>
             <div className='border shadow p-6 w-96 bg-white'>
                 <h2 className='text-3xl text-center font-bold mb-4'>Login</h2>
                 {error && <p className='text-red-500'>{error}</p>}
