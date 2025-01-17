@@ -43,7 +43,7 @@ const Table = () => {
 
   const fetchLeaves = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/leave/", {
+      const response = await axios.get("https://employee-management-system-api-lyart.vercel.app/api/leave/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -88,7 +88,7 @@ const Table = () => {
   const handleDeleteDepartment = async (deptName) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/department/${deptName}`,
+        `https://employee-management-system-api-lyart.vercel.app/api/department/${deptName}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

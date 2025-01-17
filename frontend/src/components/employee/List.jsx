@@ -57,7 +57,7 @@ const List = () => {
   const fetchEmployees = async () => {
     setEmpLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/employee/", {
+      const response = await axios.get("https://employee-management-system-api-lyart.vercel.app/api/employee/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -76,7 +76,7 @@ const List = () => {
             profileImage: (
               <img
                 className="rounded-full p-2"
-                src={`http://localhost:5000/${emp.userId.profileImage}`}
+                src={`https://employee-management-system-api-lyart.vercel.app/${emp.userId.profileImage}`}
                 style={{ width: "120px", height: "120px", objectFit: "cover" }}
                 alt="Profile"
               />
